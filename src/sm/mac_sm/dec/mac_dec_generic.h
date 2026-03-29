@@ -23,7 +23,7 @@
 
 #ifndef MAC_DECRYPTION_GENERIC
 #define MAC_DECRYPTION_GENERIC 
-
+#include "../enc/mac_enc_plain.h"
 #include "mac_dec_asn.h"
 #include "mac_dec_fb.h"
 #include "mac_dec_plain.h"

@@ -1,4 +1,4 @@
-add_subdirectory(RRC_MESSAGES)
+# add_subdirectory(RRC_MESSAGES)
 
 add_executable(xapp_kpm_moni 
 		xapp_kpm_moni.c
@@ -7,7 +7,7 @@ add_executable(xapp_kpm_moni
 		../../../../src/util/alg_ds/ds/assoc_container/assoc_ht_open_address.c
               )
 
- target_link_libraries(xapp_kpm_moni
+target_link_libraries(xapp_kpm_moni
                       PUBLIC
                       e42_xapp
                       -pthread
@@ -16,18 +16,18 @@ add_executable(xapp_kpm_moni
 		      )
 target_compile_definitions(xapp_kpm_moni PRIVATE KPM_MEAS_LIST="${KPM_MEAS_LIST}")
 
-add_executable(xapp_gtp_mac_rlc_pdcp_moni 
-		xapp_gtp_mac_rlc_pdcp_moni.c
-                ../../../../src/util/alg_ds/alg/defer.c
-              )
+#add_executable(xapp_gtp_mac_rlc_pdcp_moni 
+#		xapp_gtp_mac_rlc_pdcp_moni.c
+#                ../../../../src/util/alg_ds/alg/defer.c
+#              )
 
- target_link_libraries(xapp_gtp_mac_rlc_pdcp_moni
-                      PUBLIC
-                      e42_xapp
-                      -pthread
-                      -lsctp
-                      -ldl
-                      )
+# target_link_libraries(xapp_gtp_mac_rlc_pdcp_moni
+#                      PUBLIC
+#                      e42_xapp
+#                      -pthread
+#                      -lsctp
+#                      -ldl
+#                      )
 
 set(UE_ID_COMMON_E2SM_SRCS
   ../../../../src/sm/rc_sm/ie/asn/AMFPointer.c
@@ -68,18 +68,130 @@ set(UE_ID_COMMON_E2SM_SRCS
   ../../../../src/sm/rc_sm/ie/asn/UEID-NG-ENB.c
 )
 
-add_executable(xapp_rc_moni 
-               xapp_rc_moni.c
-               ${UE_ID_COMMON_E2SM_SRCS}
+#add_executable(xapp_rc_moni 
+#               xapp_rc_moni.c
+#               ${UE_ID_COMMON_E2SM_SRCS}
+#               ../../../../src/util/alg_ds/alg/defer.c
+#              )
+                  
+#target_link_libraries(xapp_rc_moni
+#                     PUBLIC
+#                     asn1_nr_rrc
+#                     3gpp_derived_ie_dec_asn_obj_rc
+#                     e42_xapp
+#                     -pthread
+#                     -lsctp
+#                     -ldl
+#                     )
+
+
+add_executable(xapp_kpm_moni_2
+  xapp_kpm_moni_2.c
+  ../../../../src/util/alg_ds/alg/defer.c
+  ../../../../src/util/alg_ds/alg/murmur_hash_32.c
+  ../../../../src/util/alg_ds/ds/assoc_container/assoc_ht_open_address.c
+)
+
+target_link_libraries(xapp_kpm_moni_2
+  PUBLIC
+  e42_xapp
+  -pthread
+  -lsctp
+  -ldl
+)
+
+# IMPORTANT: KPM_MEAS_LIST must expand to a *string literal* in C (so we escape quotes).
+# Replace the filename below with the one that actually exists in your build/ directory.
+target_compile_definitions(xapp_kpm_moni_2
+  PRIVATE
+  KPM_MEAS_LIST=\"${CMAKE_BINARY_DIR}/28_552_kpm_meas.txt\"
+)
+
+
+add_executable(xapp_kpm_printer
+  xapp_kpm_printer.c
+  ../../../../src/util/alg_ds/alg/defer.c
+  ../../../../src/util/alg_ds/alg/murmur_hash_32.c
+  ../../../../src/util/alg_ds/ds/assoc_container/assoc_ht_open_address.c
+)
+
+target_link_libraries(xapp_kpm_printer
+  PUBLIC
+  e42_xapp
+  -pthread
+  -lsctp
+  -ldl
+)
+
+
+target_compile_definitions(xapp_kpm_printer
+  PRIVATE
+  KPM_MEAS_LIST=\"${CMAKE_BINARY_DIR}/28_552_kpm_meas.txt\"
+)
+
+add_executable(xapp_kpm_csv
+  xapp_kpm_csv.c
+  ../../../../src/util/alg_ds/alg/defer.c
+)
+
+target_link_libraries(xapp_kpm_csv
+  PUBLIC
+  e42_xapp
+  -pthread
+  -lsctp
+  -ldl
+)
+
+add_executable(xapp_gtp_mac_rlc_pdcp_moni
+  xapp_gtp_mac_rlc_pdcp_moni.c
+  ../../../../src/util/alg_ds/alg/defer.c
+)
+
+target_link_libraries(xapp_gtp_mac_rlc_pdcp_moni
+  PUBLIC
+  e42_xapp
+  -pthread
+  -lsctp
+  -ldl
+)
+
+
+add_executable(xapp_beam_moni
+  xapp_beam_moni.c
+  ../../../../src/util/alg_ds/alg/defer.c
+)
+
+target_link_libraries(xapp_beam_moni
+  PUBLIC
+  e42_xapp
+  -pthread
+  -lsctp
+  -ldl
+)
+
+add_executable(xapp_beam_select
+               xapp_beam_select.c
                ../../../../src/util/alg_ds/alg/defer.c
               )
-                  
-target_link_libraries(xapp_rc_moni
-                     PUBLIC
-                     asn1_nr_rrc
-                     3gpp_derived_ie_dec_asn_obj_rc
-                     e42_xapp
-                     -pthread
-                     -lsctp
-                     -ldl
+
+target_link_libraries(xapp_beam_select
+                      PUBLIC
+                      e42_xapp
+                      -pthread
+                      -lsctp
+                      -ldl
+                      )
+                      
+add_executable(xapp_beam_select_ai
+               xapp_beam_select_ai.c
+               ../../../../src/util/alg_ds/alg/defer.c
+              )
+
+target_link_libraries(xapp_beam_select_ai
+                      PUBLIC
+                      e42_xapp
+                      -pthread
+                      -lsctp
+                      -ldl
                      )
+

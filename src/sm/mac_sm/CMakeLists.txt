@@ -27,9 +27,10 @@ if(SM_ENCODING_MAC STREQUAL "PLAIN")
   # Shared
   add_library(mac_sm SHARED ${SM_ENCODING_MAC_SRC_ASN} )
   target_compile_options(mac_sm PRIVATE -fPIC -fvisibility=hidden)
-
+  
   # Static
   add_library(mac_sm_static STATIC ${SM_ENCODING_MAC_SRC_ASN})
+  
 
 elseif(SM_ENCODING_MAC STREQUAL "ASN")
   message(FATAL_ERROR "MAC SM ASN not implemented")
@@ -59,7 +60,7 @@ else()
   message(FATAL_ERROR "Unknown SM encoding type")
 endif()
 
-# ToDo: Dependency from KPM_VERSION needs to be removed!
+
 target_compile_definitions(mac_sm PUBLIC ${SM_ENCODING_MAC} ${E2AP_VERSION}  ${KPM_VERSION} )
 target_compile_definitions(mac_sm_static PUBLIC ${SM_ENCODING_MAC} ${E2AP_VERSION}  ${KPM_VERSION} )
 

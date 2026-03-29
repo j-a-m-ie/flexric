@@ -25,7 +25,7 @@
 #define MAC_DECRYPTION_PLAIN_H
 
 #include <stddef.h>
-#include "../ie/mac_data_ie.h"
+#include "mac_data_ie.h"
 
 
 mac_event_trigger_t mac_dec_event_trigger_plain(size_t len, uint8_t const ev_tr[len]);

@@ -19,39 +19,24 @@
  *      contact@openairinterface.org
  */
 
+#ifndef MAC_ENC_PLAIN_H
+#define MAC_ENC_PLAIN_H
 
+#include "mac_data_ie.h"
+#include "../../../util/byte_array.h"   
 
-#ifndef MAC_ENCRYPTION_PLAIN_H
-#define MAC_ENCRYPTION_PLAIN_H 
-
-#include "../../../util/byte_array.h"
-#include "../ie/mac_data_ie.h"
-
-
-// Used for static polymorphism. 
-// View mac_enc_generic file
-typedef struct{
-
+typedef struct mac_enc_plain_s {
+  uint8_t dummy;
 } mac_enc_plain_t;
 
-
 byte_array_t mac_enc_event_trigger_plain(mac_event_trigger_t const* event_trigger);
-
-byte_array_t mac_enc_action_def_plain(mac_action_def_t const*);
-
-byte_array_t mac_enc_ind_hdr_plain(mac_ind_hdr_t const*); 
-
-byte_array_t mac_enc_ind_msg_plain(mac_ind_msg_t const*); 
-
-byte_array_t mac_enc_call_proc_id_plain(mac_call_proc_id_t const*); 
-
-byte_array_t mac_enc_ctrl_hdr_plain(mac_ctrl_hdr_t const*); 
-
-byte_array_t mac_enc_ctrl_msg_plain(mac_ctrl_msg_t const*); 
-
-byte_array_t mac_enc_ctrl_out_plain(mac_ctrl_out_t const*); 
-
-byte_array_t mac_enc_func_def_plain(mac_func_def_t const*);
+byte_array_t mac_enc_action_def_plain(mac_action_def_t const* action_def);
+byte_array_t mac_enc_ind_hdr_plain(mac_ind_hdr_t const* ind_hdr);
+byte_array_t mac_enc_ind_msg_plain(mac_ind_msg_t const* ind_msg);
+byte_array_t mac_enc_call_proc_id_plain(mac_call_proc_id_t const* call_proc_id);
+byte_array_t mac_enc_ctrl_hdr_plain(mac_ctrl_hdr_t const* ctrl_hdr);
+byte_array_t mac_enc_ctrl_msg_plain(mac_ctrl_msg_t const* ctrl_msg);
+byte_array_t mac_enc_ctrl_out_plain(mac_ctrl_out_t const* ctrl);
+byte_array_t mac_enc_func_def_plain(mac_func_def_t const* func);
 
 #endif
-
