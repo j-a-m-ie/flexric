@@ -100,8 +100,7 @@ target_link_libraries(xapp_kpm_moni_2
   -ldl
 )
 
-# IMPORTANT: KPM_MEAS_LIST must expand to a *string literal* in C (so we escape quotes).
-# Replace the filename below with the one that actually exists in your build/ directory.
+
 target_compile_definitions(xapp_kpm_moni_2
   PRIVATE
   KPM_MEAS_LIST=\"${CMAKE_BINARY_DIR}/28_552_kpm_meas.txt\"
